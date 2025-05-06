@@ -19,7 +19,10 @@ api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   
-  console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`, config.data || '');
+  // Only log requests in development mode
+  if (import.meta.env.DEV) {
+    console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`, config.data || '');
+  }
   return config;
 }, (error) => {
   // Handle request error here
@@ -30,8 +33,7 @@ api.interceptors.request.use((config) => {
 // Add a response interceptor to handle token expiration or unauthorized access
 api.interceptors.response.use(
   response => {
-    // For debugging - log successful responses
-    console.log(`API Response [${response.config.method?.toUpperCase()}] ${response.config.url}:`, response.status, response.data);
+    // Success responses no longer logged to console
     return response;
   },
   (error) => {
