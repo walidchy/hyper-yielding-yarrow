@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { CarteTechnique } from '@/types';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Users, Calendar, FileText, Tag } from 'lucide-react';
+import { MapPin, Users, Calendar, FileText, Tag, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CarteTechniqueFormProps {
@@ -22,7 +22,7 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
   onCancel,
 }) => {
   const { t } = useLanguage();
-  const { register, handleSubmit, setValue } = useForm<Partial<CarteTechnique>>({
+  const { register, handleSubmit, setValue, watch } = useForm<Partial<CarteTechnique>>({
     defaultValues: initialData || {
       name_nachat: '',
       type_nachat: '',
@@ -32,7 +32,8 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
       gender: '',
       '3adad_monkharitin': 0,
       lieu: '',
-      time: new Date().toISOString().split('T')[0],
+      time: '',
+      time_of_day: '',
       hajyat: '',
       tari9a: '',
     },
@@ -119,11 +120,36 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
         </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="time">{t('carteTechnique.time')}</Label>
-        <div className="flex items-center space-x-2">
-          <Calendar className="w-4 h-4 text-muted-foreground" />
-          <Input type="datetime-local" {...register('time')} required />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="time">{t('carteTechnique.date')}</Label>
+          <div className="flex items-center space-x-2">
+            <Calendar className="w-4 h-4 text-muted-foreground" />
+            <Input type="date" {...register('time')} required />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="time_of_day">{t('carteTechnique.timeOfDay')}</Label>
+          <div className="flex items-center space-x-2">
+            <Clock className="w-4 h-4 text-muted-foreground" />
+            <Select
+              onValueChange={(value) => setValue('time_of_day', value)}
+              defaultValue={initialData?.time_of_day || ''}
+              required
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder={t('carteTechnique.selectTimeOfDay')} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="morning">Morning (Matinée)</SelectItem>
+                <SelectItem value="afternoon">Afternoon (Après-midi)</SelectItem>
+                <SelectItem value="evening">Evening (Soirée)</SelectItem>
+                <SelectItem value="night">Night (Veillée)</SelectItem>
+                <SelectItem value="early_morning">Early Morning (Tôt le matin)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
