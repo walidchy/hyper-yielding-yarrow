@@ -56,51 +56,7 @@ export const Logo: React.FC<LogoProps> = ({
                 C
               </div>
             </div>
-
-            {/* Arabic Text */}
-            <div className={cn('mt-1 text-right',
-              size === 'sm' ? 'text-xs' : size === 'md' ? 'text-sm' : 'text-base',
-              logoColor
-            )}>
-              فرع فم الواد
-            </div>
           </div>
-
-          {/* Person in Circle Icon */}
-          {!collapsed && (
-            <div className={cn(
-              'relative',
-              size === 'sm' ? 'w-8' : size === 'md' ? 'w-14' : 'w-16',
-              'aspect-square'
-            )}>
-              <div className={cn('absolute inset-0 rounded-full border-2', logoColor, 'border-current')} />
-              <div className={cn(
-                'absolute',
-                size === 'sm' ? 'w-4 h-3 top-1 left-2' : size === 'md' ? 'w-8 h-5 top-2 left-3' : 'w-10 h-7 top-2 left-3', 
-                'border-2 rounded-full border-current', logoColor
-              )} />
-              <div className={cn(
-                'absolute',
-                size === 'sm' ? 'w-1.5 h-1.5 top-0.5 left-3.25' : size === 'md' ? 'w-2.5 h-2.5 top-1 left-6' : 'w-3 h-3 top-1 left-6.5',
-                'rounded-full bg-current', logoColor
-              )} />
-              <div className={cn(
-                'absolute',
-                size === 'sm' ? 'w-0.5 h-3 top-2 left-3.75' : size === 'md' ? 'w-1 h-6 top-4 left-6.5' : 'w-1.5 h-8 top-4 left-7',
-                'bg-current', logoColor
-              )} />
-              <div className={cn(
-                'absolute',
-                size === 'sm' ? 'w-2 h-0.5 top-3 left-3' : size === 'md' ? 'w-4 h-1 top-6 left-5' : 'w-5 h-1 top-7 left-5',
-                'bg-current', logoColor
-              )} />
-              <div className={cn(
-                'absolute',
-                size === 'sm' ? 'w-2 h-0.5 top-3.5 left-3' : size === 'md' ? 'w-4 h-1 top-7.5 left-5' : 'w-5 h-1 top-9 left-5',
-                'bg-current', logoColor
-              )} />
-            </div>
-          )}
         </div>
       </div>
 
@@ -117,18 +73,6 @@ export const Logo: React.FC<LogoProps> = ({
             style={{ fontFamily: "'Montserrat', 'Cairo', sans-serif" }}
           >
             OGEC
-          </span>
-          <span
-            className={cn(
-              'font-bold',
-              size === 'sm' ? 'text-xs' : size === 'md' ? 'text-base' : 'text-lg',
-              isDarkMode ? 'text-[#f5f2ff]' : 'text-[#221B44]',
-              'leading-tight'
-            )}
-            dir="rtl"
-            style={{ fontFamily: "'Cairo', 'Montserrat', sans-serif", letterSpacing: 0 }}
-          >
-            فرع فم الواد
           </span>
         </div>
       )}
