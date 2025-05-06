@@ -168,6 +168,7 @@ export interface CarteTechnique extends BaseEntity {
   time?: string;
   hajyat?: string;
   tari9a?: string;
+  time_of_day?: string; // Add this field for the time of day
 }
 
 // Organization interfaces

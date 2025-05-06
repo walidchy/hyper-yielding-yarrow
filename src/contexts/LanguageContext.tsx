@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import enTranslations from '../i18n/en.json';
 import frTranslations from '../i18n/fr.json';
@@ -8,7 +9,7 @@ export type Language = 'en' | 'fr' | 'ar';
 export interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: string, variables?: string[]) => string;
+  t: (key: string, variables?: string | string[]) => string;
   direction: 'ltr' | 'rtl';
 }
 
@@ -55,15 +56,22 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   // Translation function
-  const t = (key: string, variables: string[] = []): string => {
+  const t = (key: string, variables?: string | string[]): string => {
     const translationObj = translations[language];
     let text = getNestedValue(translationObj, key);
-    // Replace variables in the text if any
-    if (variables.length > 0) {
+    
+    // Handle string fallback value
+    if (typeof variables === 'string') {
+      return text || variables;
+    }
+    
+    // Handle array of variables
+    if (Array.isArray(variables) && variables.length > 0) {
       variables.forEach((variable, index) => {
         text = text.replace(`{${index}}`, variable);
       });
     }
+    
     return text;
   };
 

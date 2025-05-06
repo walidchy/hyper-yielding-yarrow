@@ -144,14 +144,14 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
               required
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder={t('carteTechnique.selectTimeOfDay', '-- Select time of day --')} />
+                <SelectValue placeholder={t('carteTechnique.selectTimeOfDay')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="morning">{t('carteTechnique.morning', 'Morning (Matinée)')}</SelectItem>
-                <SelectItem value="afternoon">{t('carteTechnique.afternoon', 'Afternoon (Après-midi)')}</SelectItem>
-                <SelectItem value="evening">{t('carteTechnique.evening', 'Evening (Soirée)')}</SelectItem>
-                <SelectItem value="night">{t('carteTechnique.night', 'Night (Veillée)')}</SelectItem>
-                <SelectItem value="early_morning">{t('carteTechnique.earlyMorning', 'Early Morning (Tôt le matin)')}</SelectItem>
+                <SelectItem value="morning">{t('carteTechnique.morning')}</SelectItem>
+                <SelectItem value="afternoon">{t('carteTechnique.afternoon')}</SelectItem>
+                <SelectItem value="evening">{t('carteTechnique.evening')}</SelectItem>
+                <SelectItem value="night">{t('carteTechnique.night')}</SelectItem>
+                <SelectItem value="early_morning">{t('carteTechnique.earlyMorning')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
