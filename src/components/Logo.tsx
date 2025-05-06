@@ -26,14 +26,14 @@ export const Logo: React.FC<LogoProps> = ({
   
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      {/* Use a different logo/styling based on theme */}
+      {/* Logo image */}
       <div className={cn('relative', sizeMap[size], 'aspect-square flex items-center justify-center')}>
         <img 
-          src="/lovable-uploads/4aad8150-dcf8-4a8f-9717-264ce1f2a687.png" 
+          src="/lovable-uploads/4a4a34bc-5ade-4a65-82ee-4db72b6cf819.png" 
           alt="OGEC Logo"
           className={cn(
             'w-auto h-full transition-all duration-300',
-            isDarkMode ? 'brightness-[1.15] contrast-[1.1] drop-shadow-[0_0_3px_rgba(255,255,255,0.5)]' : ''
+            isDarkMode ? 'brightness-[1.2] contrast-[1.15] drop-shadow-[0_0_4px_rgba(255,255,255,0.6)]' : ''
           )}
         />
       </div>
