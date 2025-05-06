@@ -19,7 +19,6 @@ export const getMaladies = async (): Promise<Maladie[]> => {
       return response.data.data;
     }
     
-    console.log('Unexpected response format for maladies:', response.data);
     return [];
   } catch (error) {
     console.error('Error fetching maladies:', error);

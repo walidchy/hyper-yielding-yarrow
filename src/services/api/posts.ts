@@ -41,8 +41,6 @@ export const updatePost = async (id: number, formData: FormData): Promise<Post |
     // For Laravel with FormData, use POST method with the _method parameter
     formData.append('_method', 'PUT');
     
-    console.log(`Updating post ${id} with form data:`, Object.fromEntries(formData.entries()));
-    
     const response = await api.post(`/posts/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

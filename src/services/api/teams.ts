@@ -4,9 +4,7 @@ import { Team } from '@/types';
 
 export const getTeams = async (): Promise<Team[]> => {
   try {
-    console.log('Fetching teams...');
     const response = await api.get('/teams');
-    console.log('Teams API response:', response);
     return response.data.data || [];
   } catch (error) {
     console.error('Error fetching teams:', error);

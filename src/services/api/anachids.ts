@@ -22,14 +22,6 @@ export const createAnachid = async (anachidData: FormData) => {
   return response.data;
 };
 
-// export const updateAnachid = async (id: number, anachidData: FormData) => {
-//   const response = await api.put(`/anachids/${id}`, anachidData, {
-//     headers: {
-//       'Content-Type': 'multipart/form-data',
-//     },
-//   });
-//   return response.data;
-// };
 export const updateAnachid = async (id: number, anachidData: FormData) => {
   const response = await api.post(`/anachids/${id}?_method=PATCH`, anachidData, {
     headers: {
@@ -38,7 +30,6 @@ export const updateAnachid = async (id: number, anachidData: FormData) => {
   });
   return response.data;
 };
-
 
 export const deleteAnachid = async (id: number) => {
   const response = await api.delete(`/anachids/${id}`);

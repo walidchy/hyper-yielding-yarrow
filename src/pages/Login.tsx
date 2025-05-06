@@ -82,7 +82,7 @@ const Login = () => {
     setLoginAttempts(prev => prev + 1);
     
     try {
-      console.log(`Login attempt #${loginAttempts + 1}`);
+      // Removed console.log
       await login(email, password);
     } catch (error: any) {
       console.error('Login form error:', error);

@@ -11,7 +11,6 @@ export const getCartesTechniques = async (): Promise<CarteTechnique[]> => {
     if (Array.isArray(response.data)) {
       return response.data;
     }
-    console.log('Unexpected response format:', response.data);
     return [];
   } catch (error) {
     console.error('Error fetching cartes techniques:', error);
