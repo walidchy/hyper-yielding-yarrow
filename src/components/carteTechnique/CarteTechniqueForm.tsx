@@ -130,7 +130,7 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
           <Label htmlFor="time">{t('carteTechnique.time')}</Label>
           <div className="flex items-center space-x-2">
             <Calendar className="w-4 h-4 text-muted-foreground" />
-            <Input type="date" {...register('time')} required />
+            <Input type="datetime-local" {...register('time')} required />
           </div>
         </div>
 
