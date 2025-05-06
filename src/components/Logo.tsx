@@ -33,28 +33,34 @@ export const Logo: React.FC<LogoProps> = ({
         <div className={cn('flex items-center gap-2', logoColor)}>
           {/* OGEC Text */}
           <div className="font-bold tracking-tight" style={{ fontFamily: "'Montserrat', 'Cairo', sans-serif" }}>
-            {/* OGEC Letters with custom styling */}
+            {/* When collapsed, show only 'O' */}
             <div className="flex items-center">
               <div className={cn('border-4 rounded-md aspect-square flex items-center justify-center', 
                 size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
                 logoColor, 'border-current')}>
                 O
               </div>
-              <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
-                size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
-                logoColor, 'border-current')}>
-                G
-              </div>
-              <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
-                size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
-                logoColor, 'border-current')}>
-                E
-              </div>
-              <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
-                size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
-                logoColor, 'border-current')}>
-                C
-              </div>
+              
+              {/* Show GEC only when not collapsed */}
+              {!collapsed && (
+                <>
+                  <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
+                    size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
+                    logoColor, 'border-current')}>
+                    G
+                  </div>
+                  <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
+                    size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
+                    logoColor, 'border-current')}>
+                    E
+                  </div>
+                  <div className={cn('ml-1 border-4 rounded-md aspect-square flex items-center justify-center', 
+                    size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl',
+                    logoColor, 'border-current')}>
+                    C
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
