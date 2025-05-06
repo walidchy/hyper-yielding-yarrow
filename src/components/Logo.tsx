@@ -72,7 +72,7 @@ export const Logo: React.FC<LogoProps> = ({
           <span
             className={cn(
               'font-extrabold tracking-tight',
-              size === 'sm' ? 'text-base' : size === 'md' ? 'text-xl' : 'text-3xl',
+              size === 'sm' ? 'text-base' : size === 'md' ? 'text-2xl' : 'text-3xl',
               isDarkMode ? 'text-white' : 'text-[#22223B]',
               'leading-6'
             )}
