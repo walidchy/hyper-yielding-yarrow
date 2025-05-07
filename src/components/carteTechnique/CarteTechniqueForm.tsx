@@ -32,8 +32,7 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
       gender: '',
       '3adad_monkharitin': 0,
       lieu: '',
-      time: '',
-      time_of_day: '',
+      time: undefined,
       hajyat: '',
       tari9a: '',
     },
@@ -120,36 +119,26 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="time">{t('carteTechnique.date')}</Label>
-          <div className="flex items-center space-x-2">
-            <Calendar className="w-4 h-4 text-muted-foreground" />
-            <Input type="date" {...register('time')} required />
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="time_of_day">{t('carteTechnique.timeOfDay')}</Label>
-          <div className="flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-muted-foreground" />
-            <Select
-              onValueChange={(value) => setValue('time_of_day', value)}
-              defaultValue={initialData?.time_of_day || ''}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={t('carteTechnique.selectTimeOfDay')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="morning">Morning (Matinée)</SelectItem>
-                <SelectItem value="afternoon">Afternoon (Après-midi)</SelectItem>
-                <SelectItem value="evening">Evening (Soirée)</SelectItem>
-                <SelectItem value="night">Night (Veillée)</SelectItem>
-                <SelectItem value="early_morning">Early Morning (Tôt le matin)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+      <div className="space-y-2">
+        <Label htmlFor="time">{t('carteTechnique.timeOfDay')}</Label>
+        <div className="flex items-center space-x-2">
+          <Clock className="w-4 h-4 text-muted-foreground" />
+          <Select
+            onValueChange={(value: 'morning' | 'afternoon' | 'evening' | 'night' | 'early_morning') => setValue('time', value)}
+            defaultValue={initialData?.time}
+            required
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder={t('carteTechnique.selectTimeOfDay')} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="morning">Morning (Matinée)</SelectItem>
+              <SelectItem value="afternoon">Afternoon (Après-midi)</SelectItem>
+              <SelectItem value="evening">Evening (Soirée)</SelectItem>
+              <SelectItem value="night">Night (Veillée)</SelectItem>
+              <SelectItem value="early_morning">Early Morning (Tôt le matin)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
