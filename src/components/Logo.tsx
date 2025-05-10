@@ -31,8 +31,8 @@ export const Logo: React.FC<LogoProps> = ({
   // Logo colors
   const logoColor = isDarkMode ? 'text-sky-400' : 'text-[#1a6c8f]';
 
-  // Letters for the logo
-  const letters = ['C', 'E', 'G', 'O'];
+  // Letters for the logo - changed from CEGO to OGEC
+  const letters = ['O', 'G', 'E', 'C'];
   
   return (
     <div className={cn('flex items-center gap-3', className)}>
