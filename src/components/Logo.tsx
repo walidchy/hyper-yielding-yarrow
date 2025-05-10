@@ -30,8 +30,8 @@ export const Logo: React.FC<LogoProps> = ({
   // Logo colors
   const logoColor = isDarkMode ? 'text-sky-400' : 'text-[#1a6c8f]';
   
-  // Order of letters based on language direction
-  const letters = isRTL ? ['C', 'E', 'G', 'O'] : ['O', 'G', 'E', 'C'];
+  // Order of letters based on language direction - fixed for Arabic
+  const letters = ['C', 'E', 'G', 'O'];
   
   return (
     <div className={cn('flex items-center gap-3', className)}>
@@ -40,7 +40,7 @@ export const Logo: React.FC<LogoProps> = ({
           <div className="font-bold tracking-tight" style={{
             fontFamily: "'Montserrat', 'Cairo', sans-serif"
           }}>
-            <div className={cn('flex', isRTL ? 'flex-row-reverse' : 'flex-row', 'items-center')}>
+            <div className={cn('flex', 'items-center')}>
               {/* First letter is always shown */}
               <div className={cn('border-4 rounded-md aspect-square flex items-center justify-center', 
                 size === 'sm' ? 'w-6 text-base' : size === 'md' ? 'w-10 text-xl' : 'w-12 text-2xl', 
@@ -74,9 +74,18 @@ export const Logo: React.FC<LogoProps> = ({
       </div>
 
       {/* Brand text - only show when not collapsed */}
-      {!collapsed && size !== 'sm' && <div className={cn('hidden lg:flex lg:flex-col')}>
+      {!collapsed && size !== 'sm' && isRTL && (
+        <div className={cn('hidden lg:flex lg:flex-col text-sm text-muted-foreground')}>
+          منظمة جيل التربية والثقافة
+        </div>
+      )}
+      
+      {/* Non-Arabic brand text */}
+      {!collapsed && size !== 'sm' && !isRTL && (
+        <div className={cn('hidden lg:flex lg:flex-col')}>
           
-        </div>}
+        </div>
+      )}
     </div>
   );
 };
