@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { CarteTechnique } from '@/types';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Users, Calendar, FileText, Tag, Clock } from 'lucide-react';
+import { MapPin, Users, Calendar, FileText, Tag } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CarteTechniqueFormProps {
@@ -22,7 +22,7 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
   onCancel,
 }) => {
   const { t } = useLanguage();
-  const { register, handleSubmit, setValue, watch } = useForm<Partial<CarteTechnique>>({
+  const { register, handleSubmit, setValue } = useForm<Partial<CarteTechnique>>({
     defaultValues: initialData || {
       name_nachat: '',
       type_nachat: '',
@@ -32,7 +32,7 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
       gender: '',
       '3adad_monkharitin': 0,
       lieu: '',
-      time: undefined,
+      time: new Date().toISOString().split('T')[0],
       hajyat: '',
       tari9a: '',
     },
@@ -120,25 +120,10 @@ const CarteTechniqueForm: React.FC<CarteTechniqueFormProps> = ({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="time">{t('carteTechnique.timeOfDay')}</Label>
+        <Label htmlFor="time">{t('carteTechnique.time')}</Label>
         <div className="flex items-center space-x-2">
-          <Clock className="w-4 h-4 text-muted-foreground" />
-          <Select
-            onValueChange={(value: 'morning' | 'afternoon' | 'evening' | 'night' | 'early_morning') => setValue('time', value)}
-            defaultValue={initialData?.time}
-            required
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={t('carteTechnique.selectTimeOfDay')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="morning">Morning (Matinée)</SelectItem>
-              <SelectItem value="afternoon">Afternoon (Après-midi)</SelectItem>
-              <SelectItem value="evening">Evening (Soirée)</SelectItem>
-              <SelectItem value="night">Night (Veillée)</SelectItem>
-              <SelectItem value="early_morning">Early Morning (Tôt le matin)</SelectItem>
-            </SelectContent>
-          </Select>
+          <Calendar className="w-4 h-4 text-muted-foreground" />
+          <Input type="datetime-local" {...register('time')} required />
         </div>
       </div>
 

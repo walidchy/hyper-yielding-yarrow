@@ -165,7 +165,7 @@ export interface CarteTechnique extends BaseEntity {
   gender?: string;
   '3adad_monkharitin'?: number;
   lieu?: string;
-  time?: 'morning' | 'afternoon' | 'evening' | 'night' | 'early_morning';
+  time?: string;
   hajyat?: string;
   tari9a?: string;
 }
