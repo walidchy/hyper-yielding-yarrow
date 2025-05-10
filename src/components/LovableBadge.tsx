@@ -13,10 +13,10 @@ export const LovableBadge = () => {
     <div className="fixed bottom-0 right-0 p-4 z-50">
       <div className="bg-white dark:bg-gray-900 rounded-full shadow-lg p-3 border border-gray-200 dark:border-gray-700">
         <div className={`h-8 w-8 ${logoColor} flex items-center justify-center`}>
-          {/* Simplified OGEC Logo for badge - just "O" */}
+          {/* Simplified badge with just "O" */}
           <div className="relative h-6 w-6">
-            <div className="flex items-center">
-              <div className={`border-2 rounded-sm aspect-square flex items-center justify-center w-6 h-6 text-xs ${logoColor} border-current`}>
+            <div className="flex items-center justify-center">
+              <div className={`border-2 rounded-full aspect-square flex items-center justify-center w-6 h-6 text-xs ${logoColor} border-current`}>
                 O
               </div>
             </div>
