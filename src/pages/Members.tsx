@@ -23,6 +23,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import MemberDetailsModal from '@/components/members/MemberDetailsModal';
 import { exportToCSV } from '@/utils/exportCsv';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -121,7 +122,7 @@ const Members = () => {
         (member.name?.toLowerCase().includes(searchTerm.toLowerCase()) || false) ||
         (member.email?.toLowerCase().includes(searchTerm.toLowerCase()) || false)
       );
-      const matchesRole = selectedRole === 'all' || member.role === selectedRole; // Changed condition to check for 'all'
+      const matchesRole = selectedRole === 'all' || member.role === selectedRole;
       return matchesSearch && matchesRole;
     }
   );
@@ -145,11 +146,22 @@ const Members = () => {
   };
 
   const membersColumns = [
+    { key: 'photo', label: t('members.table.photo', ['Photo']) },
     { key: 'id', label: t('members.table.id', ['ID']) },
     { key: 'name', label: t('members.table.name', ['Name']) },
     { key: 'email', label: t('members.table.email', ['Email']) },
     { key: 'role', label: t('members.table.role', ['Role']) },
   ];
+
+  // Function to get initials from name for avatar fallback
+  const getInitials = (name: string = '') => {
+    return name
+      .split(' ')
+      .map(part => part[0])
+      .join('')
+      .toUpperCase()
+      .substring(0, 2);
+  };
 
   if (isLoading) {
     return (
@@ -211,7 +223,7 @@ const Members = () => {
                       <SelectValue placeholder={t('members.filterByRole', ['Filter by role'])} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all"> {/* Changed from empty string to 'all' */}
+                      <SelectItem value="all">
                         {t('members.allRoles', ['All roles'])}
                       </SelectItem>
                       {roles.map((role) => (
@@ -246,6 +258,7 @@ const Members = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead>{t('members.table.photo', ['Photo'])}</TableHead>
                       <TableHead>{t('members.table.name', ['Name'])}</TableHead>
                       <TableHead>{t('members.table.email', ['Email'])}</TableHead>
                       <TableHead>{t('members.table.role', ['Role'])}</TableHead>
@@ -262,6 +275,17 @@ const Members = () => {
                     ) : (
                       paginatedMembers.map((member) => (
                         <TableRow key={member.id}>
+                          <TableCell>
+                            <Avatar className="w-10 h-10">
+                              <AvatarImage 
+                                src={member.profile_picture} 
+                                alt={member.name} 
+                              />
+                              <AvatarFallback className="bg-primary/10 text-primary">
+                                {getInitials(member.name)}
+                              </AvatarFallback>
+                            </Avatar>
+                          </TableCell>
                           <TableCell>{member.name}</TableCell>
                           <TableCell>{member.email}</TableCell>
                           <TableCell>{member.role}</TableCell>
