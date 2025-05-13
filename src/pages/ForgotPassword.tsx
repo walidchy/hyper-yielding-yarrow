@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -38,8 +37,7 @@ const ForgotPassword = () => {
   return <div dir={direction} className="min-h-screen flex items-center justify-center p-4 bg-transparent">
       <div className="max-w-md w-full animate-fade-in">
         <div className="text-center mb-8">
-          <Logo size="lg" className="mx-auto mb-4" />
-          <p className="text-ogec-secondary mt-2">{t('general.appFullName')}</p>
+          <Logo size="lg" className="mx-auto mb-4" hideText={true} />
         </div>
 
         <Card className="border-ogec-border shadow-lg">

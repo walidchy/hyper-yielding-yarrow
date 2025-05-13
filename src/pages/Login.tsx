@@ -100,8 +100,7 @@ const Login = () => {
       <AccountPendingModal open={pendingModalOpen} onClose={() => setPendingModalOpen(false)} />
       <div className="max-w-md w-full animate-fade-in">
         <div className="text-center mb-8 flex flex-col items-center">
-          <Logo size="lg" className="mx-auto" />
-          <p className="text-ogec-secondary mt-2">{t('general.appFullName')}</p>
+          <Logo size="lg" className="mx-auto" hideText={true} />
         </div>
 
         <Card className="border-ogec-border shadow-lg">

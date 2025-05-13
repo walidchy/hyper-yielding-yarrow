@@ -8,12 +8,14 @@ interface LogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   collapsed?: boolean;
+  hideText?: boolean;
 }
 
 export const Logo: React.FC<LogoProps> = ({
   className,
   size = 'md',
-  collapsed = false
+  collapsed = false,
+  hideText = false
 }) => {
   const { theme } = useTheme();
   const { language } = useLanguage();
@@ -79,8 +81,8 @@ export const Logo: React.FC<LogoProps> = ({
         </div>
       </div>
 
-      {/* Brand text */}
-      {!collapsed && size !== 'sm' && (
+      {/* Brand text - only show if not hideText and not collapsed and size is not sm */}
+      {!hideText && !collapsed && size !== 'sm' && (
         <div className={cn('hidden lg:flex lg:flex-col')}>
           {isRTL}
           {!isRTL && <span className="font-semibold text-sm">Organisation de la Génération de l'Education et de la Culture</span>}
