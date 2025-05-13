@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +7,6 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AccountPendingModal from "@/components/AccountPendingModal";
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { Logo } from '@/components/Logo';
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, Mail, LockIcon } from "lucide-react";
@@ -108,9 +106,6 @@ const Login = () => {
 
         <Card className="border-ogec-border shadow-lg">
           <CardHeader>
-            <div className="flex justify-end">
-              <LanguageSwitcher variant="ghost" showText={false} />
-            </div>
             <CardTitle className="text-2xl text-center">{t('auth.login')}</CardTitle>
             <CardDescription className="text-center">
               {t('auth.enterCredentials')}

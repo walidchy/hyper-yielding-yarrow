@@ -15,10 +15,12 @@ import { AlertCircle } from "lucide-react";
 import { useToast } from '@/components/ui/use-toast';
 import { z } from "zod";
 import { useLanguage } from '@/contexts/LanguageContext';
+
 const Register = () => {
   const {
     t
   } = useLanguage();
+  
   const registerSchema = z.object({
     name: z.string().min(3, t('validation.nameMinLength')),
     email: z.string().email(t('validation.emailInvalid')),
@@ -32,6 +34,7 @@ const Register = () => {
     message: t('validation.passwordsMustMatch'),
     path: ["password_confirmation"]
   });
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,6 +45,7 @@ const Register = () => {
     phone: '',
     address: ''
   });
+  
   const [errors, setErrors] = useState<{
     name?: string;
     email?: string;
@@ -50,17 +54,22 @@ const Register = () => {
     role?: string;
     gender?: string;
   }>({});
+  
   const [formError, setFormError] = useState<string | null>(null);
+  
   const {
     register,
     loading,
     pendingModalOpen,
     setPendingModalOpen
   } = useAuth();
+  
   const navigate = useNavigate();
+  
   const {
     toast
   } = useToast();
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       name,
@@ -71,12 +80,14 @@ const Register = () => {
       [name]: value
     }));
   };
+  
   const handleSelectChange = (name: string, value: any) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
+  
   const validateForm = () => {
     try {
       registerSchema.parse(formData);
@@ -97,6 +108,7 @@ const Register = () => {
       return false;
     }
   };
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
@@ -127,7 +139,7 @@ const Register = () => {
       } else {
         setFormError(t('validation.registrationFailed'));
       }
-
+      
       // Show toast for network errors
       if (!error.response) {
         toast({
@@ -138,6 +150,7 @@ const Register = () => {
       }
     }
   };
+  
   return <div className="min-h-screen flex items-center justify-center p-4 py-10 bg-transparent">
       <AccountPendingModal open={pendingModalOpen} onClose={() => {
       setPendingModalOpen(false);
