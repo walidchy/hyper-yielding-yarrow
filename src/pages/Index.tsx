@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -8,6 +9,7 @@ import { Home, User, Calendar, FileText, Users, LogIn, Facebook, MessageSquare }
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import VideoPlayer from '@/components/VideoPlayer';
 import { MapPin, MapPinHouse } from 'lucide-react';
+import { ThemeToggle } from '@/contexts/ThemeContext';
 
 const Index = () => {
   const { t, direction } = useLanguage();
@@ -58,7 +60,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Logo size="sm" collapsed={false} />
           
-          <div className="flex items-center gap-4 mr-4">
+          <div className="flex items-center gap-4">
             <a 
               href="https://www.facebook.com/profile.php?id=100088273427239&mibextid=rS40aB7S9Ucbxw6v"
               target="_blank"
@@ -75,18 +77,18 @@ const Index = () => {
             >
               <MessageSquare className="w-5 h-5" />
             </a>
+            <ThemeToggle />
+            <LanguageSwitcher variant="ghost" size="sm" showText={true} />
+            <Button 
+              variant="default"
+              size="sm"
+              className="bg-[#2563eb] hover:bg-[#2563eb]/90 flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300"
+              onClick={() => navigate('/login')}
+            >
+              <LogIn size={16} />
+              {t('auth.login')}
+            </Button>
           </div>
-          
-          <LanguageSwitcher variant="ghost" size="sm" showText={true} />
-          <Button 
-            variant="default"
-            size="sm"
-            className="bg-[#2563eb] hover:bg-[#2563eb]/90 flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300"
-            onClick={() => navigate('/login')}
-          >
-            <LogIn size={16} />
-            {t('auth.login')}
-          </Button>
         </div>
       </header>
       
